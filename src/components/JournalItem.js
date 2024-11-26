@@ -5,18 +5,19 @@ const JournalItem = ({ journal, onDeleteJournal, onEditJournal }) => {
   const formattedDate = format(new Date(journal.createdAt), "PPpp");
 
   return (
-    <div style={{ border: "1px solid black", padding: "10px", marginBottom: "10px", background: "#dffefd" }}>
-      <p style={{ background: "#dffefd" }}>{journal.content}</p>
-      <small style={{ background: "#dffefd" }}>Created At: {formattedDate}</small>
+    <div style={{ border: "2px solid #FB8ED3", borderRadius:"10px", padding: "10px", marginBottom: "10px", background: " white" }}>
+      <p style={{ background: "white", fontSize: "17px" }}>{journal.content}</p>
+      <small style={{ background: "white" }}>Created At: {formattedDate}</small>
       <button
         style={{
-          background: "#4CAF50",
-          color: "white",
+          background: "#FB8ED3",
+          borderRadius:"10px",
+          color: "black",
           padding: "5px 10px",
-          marginLeft: "10px",
+          marginLeft: "25px",
           border: "none",
           cursor: "pointer",
-          fontSize: "15px",
+          fontSize: "17px",
         }}
         onClick={() => onEditJournal(journal)}
       >
@@ -24,13 +25,14 @@ const JournalItem = ({ journal, onDeleteJournal, onEditJournal }) => {
       </button>
       <button
         style={{
-          background: "#fe6a4a",
+          background: "#F64545",
           color: "white",
           padding: "5px 10px",
-          marginLeft: "10px",
+          marginLeft: "20px",
           border: "none",
+          borderRadius:"10px",
           cursor: "pointer",
-          fontSize: "15px",
+          fontSize: "17px",
         }}
         onClick={() => onDeleteJournal(journal.id)}
       >

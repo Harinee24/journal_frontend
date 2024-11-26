@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
   const [content, setContent] = useState(editJournal ? editJournal.content : "");
+  const [isFocused, setIsFocused] = useState(false);
 
   useEffect(() => {
     if (editJournal) {
@@ -26,19 +27,39 @@ const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label style={{ textAlign: "center", border: "none", background: "rgb(199, 251, 255)" }}>
-          <strong style={{ background: "rgb(199, 251, 255)", fontSize: "20px" }}>Content:</strong>
+        <label style={{ textAlign: "center", border: "none" }}>
+          <strong style={{ fontSize: "20px" }}>Content:</strong>
         </label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
-          rows="4"
-          style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }}
+          onFocus={() => setIsFocused(true)} 
+          onBlur={() => setIsFocused(false)} 
+          rows="9"
+          style={{
+            width: "100%",
+            marginTop: "20px",
+            marginBottom: "10px",
+            border: "2px solid #53E2FF", // Keep the border style consistent
+            borderRadius: "10px",
+            outline: "none", // Prevent default outline on focus
+          }}
         />
       </div>
       <button
         type="submit"
-        style={{ backgroundColor: "rgb(146, 181, 250)", color: "black", padding: "10px", paddingBottom:"10px", marginBottom:"20px", border: "0.2px solid black", cursor: "pointer", fontSize: "17px" }}
+        style={{
+          background: "#53E2FF",
+          color: "black",
+          padding: "10px",
+          paddingBottom: "10px",
+          marginBottom: "20px",
+          border: "2px solid #53E2FF", // Same border for the button
+          cursor: "pointer",
+          fontSize: "17px",
+          borderRadius: "15px",
+          outline: "none" // Remove outline for button focus
+        }}
       >
         <strong>{editJournal ? "Update Journal" : "Add Journal"}</strong>
       </button>
