@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import JournalForm from "./components/JournalForm";
 import JournalList from "./components/JournalList";
-import { getJournals, createJournal, deleteJournal } from "./services/journalService";
+import { getJournals, createJournal, deleteJournal, updateJournal } from "./services/journalService";
 
 const App = () => {
   const [journals, setJournals] = useState([]);
+  const [editJournal, setEditJournal] = useState(null);
 
   useEffect(() => {
     fetchJournals();
@@ -37,11 +38,33 @@ const App = () => {
     }
   };
 
+  const handleEditJournal = async (id, content) => {
+    try {
+      const updatedJournal = await updateJournal(id, content);
+      setJournals(
+        journals.map((journal) =>
+          journal.id === id ? { ...journal, content: updatedJournal.content } : journal
+        )
+      );
+      setEditJournal(null); // Reset the form to add new journal after editing
+    } catch (error) {
+      console.error("Error updating journal:", error);
+    }
+  };
+
+  const handleEditClick = (journal) => {
+    setEditJournal(journal);
+  };
+
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Journal App</h1>
-      <JournalForm onAddJournal={handleAddJournal} />
-      <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} />
+      <h1>Journalling</h1>
+      <JournalForm
+        onAddJournal={handleAddJournal}
+        onEditJournal={handleEditJournal}
+        editJournal={editJournal}
+      />
+      <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} onEditJournal={handleEditClick} />
     </div>
   );
 };

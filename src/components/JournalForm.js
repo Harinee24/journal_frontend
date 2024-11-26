@@ -1,7 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
-const JournalForm = ({ onAddJournal }) => {
-  const [content, setContent] = useState("");
+const JournalForm = ({ onAddJournal, onEditJournal, editJournal }) => {
+  const [content, setContent] = useState(editJournal ? editJournal.content : "");
+
+  useEffect(() => {
+    if (editJournal) {
+      setContent(editJournal.content);
+    }
+  }, [editJournal]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -9,23 +15,32 @@ const JournalForm = ({ onAddJournal }) => {
       alert("Content cannot be empty");
       return;
     }
-    onAddJournal(content);
-    setContent("");
+    if (editJournal) {
+      onEditJournal(editJournal.id, content); // Pass the journal ID and content to edit
+    } else {
+      onAddJournal(content); // Add new journal
+    }
+    setContent(""); // Clear the form after submission
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label style={{textAlign:"center", border:"none", background:"rgb(199, 251, 255)"}}><strong style={{background:"rgb(199, 251, 255)", fontSize:"20px"}}>Content:</strong></label>
+        <label style={{ textAlign: "center", border: "none", background: "rgb(199, 251, 255)" }}>
+          <strong style={{ background: "rgb(199, 251, 255)", fontSize: "20px" }}>Content:</strong>
+        </label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows="4"
-          style={{ width: "100%", marginTop: "20px", marginBottom: "10px"  }}
+          style={{ width: "100%", marginTop: "20px", marginBottom: "10px" }}
         />
       </div>
-      <button type="submit" style={{ backgroundColor: "rgb(146, 181, 250)", color: "black", padding: "10px", border: "0.2px solid black", cursor: "pointer", fontSize:"17px" }}>
-        <strong>Add Journal</strong>
+      <button
+        type="submit"
+        style={{ backgroundColor: "rgb(146, 181, 250)", color: "black", padding: "10px", paddingBottom:"10px", marginBottom:"20px", border: "0.2px solid black", cursor: "pointer", fontSize: "17px" }}
+      >
+        <strong>{editJournal ? "Update Journal" : "Add Journal"}</strong>
       </button>
     </form>
   );
