@@ -1,16 +1,16 @@
-import React from "react";
-import JournalItem from "./JournalItem"; // Ensure JournalItem is imported
+import React from 'react';
+import JournalItem from './JournalItem'; // Import JournalItem component
 
-const JournalList = ({ journals, onDeleteJournal }) => {
+const JournalList = ({ journals, onDeleteJournal, onEditJournal }) => {
   return (
     <div>
-      <h2>All Journals</h2>
       {journals.length > 0 ? (
         journals.map((journal) => (
           <JournalItem
             key={journal.id}
             journal={journal}
             onDeleteJournal={onDeleteJournal}
+            onEditJournal={onEditJournal} // Ensure onEditJournal is passed here
           />
         ))
       ) : (
@@ -20,4 +20,4 @@ const JournalList = ({ journals, onDeleteJournal }) => {
   );
 };
 
-export default JournalList; // Ensure this is exported
+export default JournalList;

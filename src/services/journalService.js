@@ -18,3 +18,8 @@ export const deleteJournal = async (id) => {
   const response = await axios.delete(`${API_URL}/${id}`);
   return response.data;
 };
+
+export const updateJournal = async (id, content) => {
+  const response = await axios.put(`${API_URL}/${id}`, { content });
+  return response.data;
+};
