@@ -16,16 +16,16 @@ const JournalForm = ({ onAddJournal }) => {
   return (
     <form onSubmit={handleSubmit}>
       <div>
-        <label>Content:</label>
+        <label style={{textAlign:"center", border:"none", background:"rgb(199, 251, 255)"}}><strong style={{background:"rgb(199, 251, 255)", fontSize:"20px"}}>Content:</strong></label>
         <textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           rows="4"
-          style={{ width: "100%", marginBottom: "10px" }}
+          style={{ width: "100%", marginTop: "20px", marginBottom: "10px"  }}
         />
       </div>
-      <button type="submit" style={{ backgroundColor: "#007BFF", color: "white", padding: "10px", border: "none", cursor: "pointer" }}>
-        Add Journal
+      <button type="submit" style={{ backgroundColor: "rgb(146, 181, 250)", color: "black", padding: "10px", border: "0.2px solid black", cursor: "pointer", fontSize:"17px" }}>
+        <strong>Add Journal</strong>
       </button>
     </form>
   );

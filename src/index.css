@@ -11,3 +11,6 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+*{
+  background: linear-gradient(to right, rgb(199, 251, 255), rgb(146, 181, 250));
+}
