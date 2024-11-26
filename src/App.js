@@ -56,17 +56,58 @@ const App = () => {
     setEditJournal(journal);
   };
 
+  // return (
+  //   <div style={{ padding: "20px" }}>
+  //     <h1><center>Journalling</center></h1>
+  //     <JournalForm
+  //       onAddJournal={handleAddJournal}
+  //       onEditJournal={handleEditJournal}
+  //       editJournal={editJournal}
+  //     />
+  //     <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} onEditJournal={handleEditClick} />
+  //   </div>
+  // );
   return (
     <div style={{ padding: "20px" }}>
-      <h1>Journalling</h1>
+      <div 
+        style={{ 
+          marginTop:"10px",
+          display: "flex", 
+          alignItems: "center", 
+          justifyContent: "center", 
+          position: "relative",
+          marginBottom: "30px" 
+        }}
+      >
+      
+        <img
+          src="left_arrow.jpg" 
+          alt="Left Arrow"
+          style={{
+            position: "absolute", 
+            left: "1px", 
+            top: "50%", 
+            transform: "translateY(-50%)", 
+            cursor: "pointer", 
+            height: "25px"
+          }}
+        />
+
+        <h1 style={{ margin: 0 }}>Journalling</h1>
+      </div>
       <JournalForm
         onAddJournal={handleAddJournal}
         onEditJournal={handleEditJournal}
         editJournal={editJournal}
       />
-      <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} onEditJournal={handleEditClick} />
+      <JournalList
+        journals={journals}
+        onDeleteJournal={handleDeleteJournal}
+        onEditJournal={handleEditClick}
+      />
     </div>
   );
+  
 };
 
 export default App;
