@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import JournalForm from "./components/JournalForm";
 import JournalList from "./components/JournalList";
-import { getJournals, createJournal } from "./services/journalService";
+import { getJournals, createJournal, deleteJournal } from "./services/journalService";
 
 const App = () => {
   const [journals, setJournals] = useState([]);
@@ -28,11 +28,20 @@ const App = () => {
     }
   };
 
+  const handleDeleteJournal = async (id) => {
+    try {
+      await deleteJournal(id);
+      setJournals(journals.filter((journal) => journal.id !== id));
+    } catch (error) {
+      console.error("Error deleting journal:", error);
+    }
+  };
+
   return (
     <div style={{ padding: "20px" }}>
       <h1>Journal App</h1>
       <JournalForm onAddJournal={handleAddJournal} />
-      <JournalList journals={journals} />
+      <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} />
     </div>
   );
 };

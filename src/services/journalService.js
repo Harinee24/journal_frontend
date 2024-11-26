@@ -13,3 +13,8 @@ export const createJournal = async (content) => {
   const response = await axios.post(API_URL, { content });
   return response.data;
 };
+
+export const deleteJournal = async (id) => {
+  const response = await axios.delete(`${API_URL}/${id}`);
+  return response.data;
+};
