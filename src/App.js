@@ -46,7 +46,7 @@ const App = () => {
           journal.id === id ? { ...journal, content: updatedJournal.content } : journal
         )
       );
-      setEditJournal(null); // Reset the form to add new journal after editing
+      setEditJournal(null); // Reset the form to add a new journal after editing
     } catch (error) {
       console.error("Error updating journal:", error);
     }
@@ -56,45 +56,10 @@ const App = () => {
     setEditJournal(journal);
   };
 
-  // return (
-  //   <div style={{ padding: "20px" }}>
-  //     <h1><center>Journalling</center></h1>
-  //     <JournalForm
-  //       onAddJournal={handleAddJournal}
-  //       onEditJournal={handleEditJournal}
-  //       editJournal={editJournal}
-  //     />
-  //     <JournalList journals={journals} onDeleteJournal={handleDeleteJournal} onEditJournal={handleEditClick} />
-  //   </div>
-  // );
   return (
-    <div style={{ padding: "20px" }}>
-      <div 
-        style={{ 
-          marginTop:"10px",
-          display: "flex", 
-          alignItems: "center", 
-          justifyContent: "center", 
-          position: "relative",
-          marginBottom: "30px" 
-        }}
-      >
+    <div style={{ padding: "5px" }}>
       
-        <img
-          src="left_arrow.jpg" 
-          alt="Left Arrow"
-          style={{
-            position: "absolute", 
-            left: "1px", 
-            top: "50%", 
-            transform: "translateY(-50%)", 
-            cursor: "pointer", 
-            height: "25px"
-          }}
-        />
-
-        <h1 style={{ margin: 0 }}>Journalling</h1>
-      </div>
+      {/* Journal Application */}
       <JournalForm
         onAddJournal={handleAddJournal}
         onEditJournal={handleEditJournal}
@@ -107,7 +72,6 @@ const App = () => {
       />
     </div>
   );
-  
 };
 
 export default App;

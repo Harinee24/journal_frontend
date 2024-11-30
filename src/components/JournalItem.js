@@ -5,14 +5,15 @@ const JournalItem = ({ journal, onDeleteJournal, onEditJournal }) => {
   const formattedDate = format(new Date(journal.createdAt), "PPpp");
 
   return (
-    <div style={{ border: "2px solid #FB8ED3", borderRadius:"10px", padding: "10px", marginBottom: "10px", background: " white" }}>
+    
+    <div style={{ border: "1px solid black", borderRadius:"10px", padding: "10px", marginBottom: "10px", background: " white" }}>
       <p style={{ background: "white", fontSize: "17px" }}>{journal.content}</p>
       <small style={{ background: "white" }}>Created At: {formattedDate}</small>
       <button
         style={{
-          background: "#FB8ED3",
+          background: "rgba(69, 143, 246, 1)",
           borderRadius:"10px",
-          color: "black",
+          color: "white",
           padding: "5px 10px",
           marginLeft: "25px",
           border: "none",
@@ -25,7 +26,7 @@ const JournalItem = ({ journal, onDeleteJournal, onEditJournal }) => {
       </button>
       <button
         style={{
-          background: "#F64545",
+          background: "rgba(223, 58, 90, 1)",
           color: "white",
           padding: "5px 10px",
           marginLeft: "20px",
